@@ -1,0 +1,53 @@
+{
+  "$id": "https://example.com/schemas",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "API catégorie de ressources",
+  "description": "Description du modèle de données",
+  "type": "object",
+  "properties": {
+    "spi": {
+      "title": "Identifiant fiscal",
+      "type": "string",
+      "writeOnly": true,
+      "pattern": "^[0-9]{13,13}$"
+    },
+    "referenceAvis": {
+      "title": "Référence de l'avis d'imposition",
+      "type": "string",
+      "writeOnly": true,
+      "pattern": "^[0-9A-Z]{13,14}$"
+    },
+    "anneeReference": {
+      "title": "Année de référence pour le calcul de l'IR",
+      "type": "string",
+      "readOnly": true
+    },
+    "categorieRessources": {
+      "title": "Catégorie de ressource du ménage",
+      "type": "string",
+      "readOnly": true,
+      "oneOf": [
+        {
+          "const": "TMO",
+          "title": "Très modeste"
+        },
+        {
+          "const": "MO",
+          "title": "Modeste"
+        },
+        {
+          "const": "INT",
+          "title": "Intermédiaire"
+        },
+        {
+          "const": "SUP",
+          "title": "Supérieur"
+        }
+      ]
+    }
+  },
+  "required": [
+    "spi",
+    "referenceAvis"
+  ]
+}
